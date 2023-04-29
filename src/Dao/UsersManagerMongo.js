@@ -17,10 +17,9 @@ class UsersManager {
     }
   }
 
-  async loginUser(user) {
-    const { email, password } = user;
+  async loginUser(email) {
     try {
-      const user = await userModel.findOne({ email, password });
+      const user = await userModel.findOne({ email });
       return user;
     } catch (error) {
       console.log(error);
