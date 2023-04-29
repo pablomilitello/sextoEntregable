@@ -1,0 +1,51 @@
+{{#if products.length}}
+  <h2>Welcome {{firstName}}!</h2>
+  <h2 align='center'>List of existing products online</h2>
+
+  <table class='table' id='table' cellPadding='10' border='1' align='center'>
+    <thead>
+      <tr>
+        <th>#id</th>
+        <th>Product</th>
+        <th>Description</th>
+        <th>Price</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody id='productsTable'>
+      {{#each products}}
+        <tr>
+          <td>{{id}}</td>
+          <td>{{title}}</td>
+          <td>{{description}}</td>
+          <td>${{price}}</td>
+          <td><button class='delete' data-id='{{id}}'>Delete</button></td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+{{else}}
+  <h2>No products found</h2>
+{{/if}}
+
+<br />
+<br />
+
+<h2 align='center'>Add products</h2>
+
+<form id='formProduct' align='center'>
+  <input type='text' id='pTitle' name='title' placeholder='title' />
+  <input type='text' id='pDescription' name='description' placeholder='description' />
+  <input type='text' id='pCategory' name='category' placeholder='category' />
+  <input type='number' id='pPrice' name='price' placeholder='price' />
+  <input type='text' id='pCode' name='code' placeholder='code' />
+  <input type='number' id='pStock' name='stock' placeholder='stock' />
+  <button type='submit' id='addProduct'>Add product</button>
+</form>
+
+<form action='/register/logout' method='post'>
+  <button type='submit'> LOGOUT</button>
+</form>
+
+<script src='/socket.io/socket.io.js'></script>
+<script src='/js/index.js'></script>

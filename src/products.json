@@ -1,0 +1,90 @@
+[
+  {
+    "id": 1,
+    "title": "jeans",
+    "description": "blue jeans medium",
+    "category": "summer",
+    "price": 30,
+    "thumbnail": [],
+    "code": "ABC0001",
+    "stock": 10,
+    "status": true
+  },
+  {
+    "id": 2,
+    "title": "shirt",
+    "description": "white shirt medium",
+    "category": "summer",
+    "price": 20,
+    "thumbnail": [],
+    "code": "ABC0002",
+    "stock": 7,
+    "status": true
+  },
+  {
+    "id": 3,
+    "title": "shoes",
+    "description": "black shoes 41",
+    "category": "summer",
+    "price": 22,
+    "thumbnail": [],
+    "code": "ABC0003",
+    "stock": 15,
+    "status": true
+  },
+  {
+    "id": 4,
+    "title": "boots",
+    "description": "white boots",
+    "category": "winter",
+    "price": 23,
+    "thumbnail": [],
+    "code": "ABC0004",
+    "stock": 10,
+    "status": true
+  },
+  {
+    "id": 5,
+    "title": "belt",
+    "description": "red belt 1m",
+    "category": "summer",
+    "price": 7,
+    "thumbnail": [],
+    "code": "ABC0005",
+    "stock": 5,
+    "status": true
+  },
+  {
+    "id": 6,
+    "title": "dress",
+    "description": "pink beautifull dress",
+    "category": "summer",
+    "price": 12,
+    "thumbnail": [],
+    "code": "ABC0006",
+    "stock": 3,
+    "status": true
+  },
+  {
+    "id": 7,
+    "title": "jacket",
+    "description": "black and white jacket",
+    "category": "summer",
+    "price": 25,
+    "thumbnail": [],
+    "code": "ABC0007",
+    "stock": 7,
+    "status": true
+  },
+  {
+    "id": 8,
+    "title": "gloves",
+    "description": "gloves small",
+    "category": "winter",
+    "price": "13",
+    "thumbnail": [],
+    "code": "abscd",
+    "stock": "12",
+    "status": true
+  }
+]
