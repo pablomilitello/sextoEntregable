@@ -11,6 +11,8 @@ import cookieParser from 'cookie-parser';
 import session from 'express-session';
 import registerRouter from './routes/register.router.js';
 import mongoStore from 'connect-mongo';
+import passport from 'passport';
+import './passport/passportEstrategies.js';
 
 const path = __dirname + '/products.json';
 const productManager = new ProductManager(path);
@@ -42,6 +44,10 @@ app.use(
     },
   })
 );
+
+//Passport
+app.use(passport.initialize());
+app.use(passport.session());
 
 //Routes
 app.use('/api/products', productsRouter);

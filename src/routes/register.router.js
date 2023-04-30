@@ -38,12 +38,10 @@ router.post('/login', async (req, res) => {
   const user = await usersManager.loginUser(email);
   if (!user) {
     return res.redirect('/register/errorLogin');
-    //res.json({ message: `User not found` })
   }
   const isPassword = await compareData(password, user.password);
   if (!isPassword) {
     return res.redirect('/register/errorLogin');
-    //res.json({ message: `Password incorrect` })
   }
   req.session['email'] = email;
   req.session['firstName'] = user.firstName;
