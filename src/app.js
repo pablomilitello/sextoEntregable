@@ -12,7 +12,7 @@ import session from 'express-session';
 import registerRouter from './routes/register.router.js';
 import mongoStore from 'connect-mongo';
 import passport from 'passport';
-import './passport/passportEstrategies.js';
+import './passport/passportStrategies.js';
 
 const path = __dirname + '/products.json';
 const productManager = new ProductManager(path);

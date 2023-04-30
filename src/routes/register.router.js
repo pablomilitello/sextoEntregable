@@ -1,9 +1,7 @@
 import { Router } from 'express';
-import UsersManager from '../Dao/UsersManagerMongo.js';
-import { hashData, compareData } from '../utils.js';
+import passport from 'passport';
 
 const router = Router();
-const usersManager = new UsersManager();
 
 router.get('/', (req, res) => {
   res.render('register');
@@ -11,18 +9,6 @@ router.get('/', (req, res) => {
 
 router.get('/login', (req, res) => {
   res.render('login');
-});
-
-router.post('/', async (req, res) => {
-  const user = req.body;
-  const hashPassword = await hashData(user.password);
-  const newUser = { ...user, password: hashPassword };
-  await usersManager.createUser(newUser);
-  if (newUser) {
-    res.redirect('/register/login');
-  } else {
-    res.redirect('/register/errorRegister');
-  }
 });
 
 router.get('/errorRegister', (req, res) => {
@@ -33,23 +19,12 @@ router.get('/errorLogin', (req, res) => {
   res.render('errorLogin');
 });
 
-router.post('/login', async (req, res) => {
-  const { email, password } = req.body;
-  const user = await usersManager.loginUser(email);
-  if (!user) {
-    return res.redirect('/register/errorLogin');
-  }
-  const isPassword = await compareData(password, user.password);
-  if (!isPassword) {
-    return res.redirect('/register/errorLogin');
-  }
-  req.session['email'] = email;
-  req.session['firstName'] = user.firstName;
-  if (email === 'adminCoder@coder.com' && password === 'adminCod3r123') {
-    req.session['role'] = 'admin';
-  } else {
-    req.session['role'] = 'user';
-  }
+//Passport
+router.post('/', passport.authenticate('register', { failureRedirect: '/register/errorRegister' }), (req, res) => {
+  res.redirect('/register/login');
+});
+
+router.post('/login', passport.authenticate('login', { failureRedirect: '/register/errorLogin' }), (req, res) => {
   res.redirect(`/views/realtimeproducts`);
 });
 
@@ -57,6 +32,15 @@ router.post('/logout', (req, res) => {
   req.session.destroy(() => {
     res.redirect('/register/login');
   });
+});
+
+router.get(
+  '/signupGithub',
+  passport.authenticate('github', { scope: ['user:email'], failureRedirect: '/register/errorRegister' })
+);
+
+router.get('/github', passport.authenticate('github', { failureRedirect: '/register/errorLogin' }), (req, res) => {
+  res.redirect('/views/realtimeproducts');
 });
 
 export default router;

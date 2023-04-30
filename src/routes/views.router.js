@@ -32,7 +32,7 @@ router.get('/products', async (req, res) => {
 
 router.get('/realtimeproducts', async (req, res) => {
   const products = await productManager.getProducts(100, 0, undefined, undefined, undefined, true);
-  res.render('realTimeProducts', { products: products.docs, firstName: req.session.firstName });
+  res.render('realTimeProducts', { products: products.docs, firstName: req.user.firstName });
 });
 
 router.get('/chat', async (req, res) => {
